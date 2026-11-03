@@ -117,7 +117,7 @@ public class InventoryTest {
         assertEquals(0, inventory.getChocolate());
     }
 
-    // ---------- enoughIngredients tests ----------
+    // enough ingredients
 
     @Test
     public void testEnoughIngredientsReturnsTrue() {
@@ -183,4 +183,36 @@ public class InventoryTest {
         // act / assert
         assertThrows(NullPointerException.class, () -> inventory.enoughIngredients(null));
     }
+
+    // task 2, additional tests for survived mutants
+
+
+    // boundary tests
+    @Test
+    public void testEnoughMilkWhenAmountEqualsInventory() {
+        // arrange
+        recipe.setAmtMilk(15);
+
+        // act / assert
+        assertTrue(inventory.enoughIngredients(recipe));
+    }
+
+    @Test
+    public void testEnoughSugarWhenAmountEqualsInventory() {
+        // arrange
+        recipe.setAmtSugar(15);
+
+        // act / assert
+        assertTrue(inventory.enoughIngredients(recipe));
+    }
+
+    @Test
+    public void testEnoughChocolateWhenAmountEqualsInventory() {
+        // arrange
+        recipe.setAmtChocolate(15);
+
+        // act / assert
+        assertTrue(inventory.enoughIngredients(recipe));
+    }
 }
+

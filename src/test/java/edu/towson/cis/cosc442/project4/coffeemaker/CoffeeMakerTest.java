@@ -2,6 +2,8 @@ package edu.towson.cis.cosc442.project4.coffeemaker;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -260,5 +262,76 @@ public class CoffeeMakerTest {
 
         // assert
         assertNull(result.getName());
+    }
+
+    // task 2, additional tests for survived mutants
+
+    @Test
+    public void testDeleteExistingRecipeReturnsTrue() {
+        // arrange
+        coffeeMaker.addRecipe(recipe1);
+
+        // act
+        boolean result = coffeeMaker.deleteRecipe(recipe1);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testAddInventoryIncreasesStock() {
+        // act
+        boolean result = coffeeMaker.addInventory(5, 4, 0, 2);
+
+        // assert
+        assertTrue(result);
+        assertEquals(20, coffeeMaker.checkInventory().getCoffee());
+        assertEquals(19, coffeeMaker.checkInventory().getMilk());
+        assertEquals(17, coffeeMaker.checkInventory().getChocolate());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "-1, 0, 0, 0",
+            "0, -1, 0, 0",
+            "0, 0, 0, -1"
+    })
+    public void testAddNegativeInventoryIsRejected(int coffee, int milk, int sugar, int chocolate) {
+        // act
+        boolean result = coffeeMaker.addInventory(coffee, milk, sugar, chocolate);
+
+        // assert
+        assertFalse(result);
+        assertEquals(15, coffeeMaker.checkInventory().getCoffee());
+        assertEquals(15, coffeeMaker.checkInventory().getMilk());
+        assertEquals(15, coffeeMaker.checkInventory().getChocolate());
+    }
+
+    @Test
+    public void testMakeCoffeeUsesMilkSugarAndChocolate() {
+        // arrange
+        coffeeMaker.addRecipe(recipe2);
+
+        // act
+        coffeeMaker.makeCoffee(recipe2, 75);
+
+        // assert
+        assertEquals(14, coffeeMaker.checkInventory().getMilk());
+        assertEquals(14, coffeeMaker.checkInventory().getSugar());
+        assertEquals(12, coffeeMaker.checkInventory().getChocolate());
+    }
+
+    @Test
+    public void testGetRecipesContainsAddedRecipes() {
+        // arrange
+        coffeeMaker.addRecipe(recipe1);
+        coffeeMaker.addRecipe(recipe2);
+
+        // act
+        Recipe[] recipes = coffeeMaker.getRecipes();
+
+        // assert
+        assertTrue(Arrays.asList(recipes).contains(recipe1));
+        assertTrue(Arrays.asList(recipes).contains(recipe2));
     }
 }
