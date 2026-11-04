@@ -195,7 +195,7 @@ public class InventoryTest {
 
         // act / assert
         assertTrue(inventory.enoughIngredients(recipe));
-    }
+    } 
 
     @Test
     public void testEnoughSugarWhenAmountEqualsInventory() {
@@ -213,6 +213,6 @@ public class InventoryTest {
 
         // act / assert
         assertTrue(inventory.enoughIngredients(recipe));
-    }
+    } 
 }
 
