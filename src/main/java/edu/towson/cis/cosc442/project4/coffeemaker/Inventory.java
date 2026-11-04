@@ -12,7 +12,7 @@ public class Inventory {
      * sugar, and chocolate.
      */
     public Inventory() {
-        setCoffee(0); // inserted fault
+        setCoffee(15); 
         setMilk(15);
         setSugar(15);
         setChocolate(15);
