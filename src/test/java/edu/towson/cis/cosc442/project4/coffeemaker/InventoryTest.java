@@ -188,7 +188,7 @@ public class InventoryTest {
 
 
     // boundary tests
-/*     @Test
+    @Test
     public void testEnoughMilkWhenAmountEqualsInventory() {
         // arrange
         recipe.setAmtMilk(15);
@@ -213,6 +213,6 @@ public class InventoryTest {
 
         // act / assert
         assertTrue(inventory.enoughIngredients(recipe));
-    } */
+    } 
 }
 
