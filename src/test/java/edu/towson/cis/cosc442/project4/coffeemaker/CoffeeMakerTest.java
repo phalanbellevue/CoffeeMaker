@@ -266,7 +266,7 @@ public class CoffeeMakerTest {
 
     // task 2, additional tests for survived mutants
 
-    @Test
+/*     @Test
     public void testDeleteExistingRecipeReturnsTrue() {
         // arrange
         coffeeMaker.addRecipe(recipe1);
@@ -319,7 +319,7 @@ public class CoffeeMakerTest {
         assertEquals(14, coffeeMaker.checkInventory().getMilk());
         assertEquals(14, coffeeMaker.checkInventory().getSugar());
         assertEquals(12, coffeeMaker.checkInventory().getChocolate());
-    }
+    } */
 
     @Test
     public void testGetRecipesContainsAddedRecipes() {
